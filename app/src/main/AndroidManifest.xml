@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FakeStoreApp">
+        <activity android:name=".views.activies.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.activies.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.activies.BaseActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
