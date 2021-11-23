@@ -22,7 +22,7 @@ public class RegisterViewModel extends BaseViewModel {
     /**
      * login api
      */
-    public void loginUser(Register register) {
+    public void registerUser(Register register) {
 
         RetrofitService.getInstance().registerUser(register, new Callback<RegisterResponse>() {
             @Override

@@ -24,6 +24,8 @@ public class LoginViewModel extends BaseViewModel {
      */
     public void loginUser(Login login) {
 
+        mLoginResponse.setValue(new LoginResponse());//TODO: remove hack
+
         RetrofitService.getInstance().loginUser(login, new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {

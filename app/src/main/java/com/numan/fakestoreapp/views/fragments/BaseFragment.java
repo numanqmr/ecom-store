@@ -1,4 +1,4 @@
-package com.numan.fakestoreapp.views.activies.fragments;
+package com.numan.fakestoreapp.views.activities.fragments;
 
 import android.os.Bundle;
 
