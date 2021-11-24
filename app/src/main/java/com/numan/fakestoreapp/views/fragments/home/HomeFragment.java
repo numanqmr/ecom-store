@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.numan.fakestoreapp.R;
+import com.numan.fakestoreapp.common.Constants;
 import com.numan.fakestoreapp.common.adapters.ProductsAdapter;
 import com.numan.fakestoreapp.common.dtos.Product;
 import com.numan.fakestoreapp.common.interfaces.CustomClickListener;
@@ -138,8 +139,10 @@ public class HomeFragment extends BaseFragment implements CustomClickListener {
     @Override
     public void onProductClick(Product product, int quantity) {
 
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.KEY_ARGS_PRODUCT, product);
         Navigation.findNavController(getView())
-                .navigate(R.id.navigation_details);
+                .navigate(R.id.navigation_details, bundle);
 
     }
 }

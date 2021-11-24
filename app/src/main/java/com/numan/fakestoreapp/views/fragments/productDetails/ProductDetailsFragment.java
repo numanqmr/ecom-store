@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -13,19 +12,30 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.numan.fakestoreapp.R;
-import com.numan.fakestoreapp.common.adapters.ProductsAdapter;
+import com.numan.fakestoreapp.common.Constants;
+import com.numan.fakestoreapp.common.GlideHelper;
+import com.numan.fakestoreapp.common.dtos.CartItem;
 import com.numan.fakestoreapp.common.dtos.Product;
 import com.numan.fakestoreapp.common.interfaces.CustomClickListener;
-import com.numan.fakestoreapp.databinding.FragmentHomeBinding;
 import com.numan.fakestoreapp.databinding.FragmentProductDetailsBinding;
 import com.numan.fakestoreapp.views.activities.BaseActivity;
 import com.numan.fakestoreapp.views.fragments.BaseFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+
 
 public class ProductDetailsFragment extends BaseFragment implements CustomClickListener {
 
+    private static final String TAG = ProductDetailsFragment.class.getSimpleName();
+
     private ProductDetailsViewModel mViewModel;
     private FragmentProductDetailsBinding mBinding;
+
+    private int mQuantity = 1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,13 +43,13 @@ public class ProductDetailsFragment extends BaseFragment implements CustomClickL
         mViewModel = new ViewModelProvider(this).get(ProductDetailsViewModel.class);
         mBinding.setViewModel(mViewModel);
 
-        try {
-            ((BaseActivity) getActivity()).showProgress(getContext());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Product product = (Product) getArguments().getSerializable(Constants.KEY_ARGS_PRODUCT);
+        mBinding.setProduct(product);
+        mBinding.setRating(product.getRating());
+        mBinding.setQuantity(mQuantity);
+        Log.i(TAG, "product: " + product);
 
-        initViews();
+        initViews(product);
 
         observeViewModel();
 
@@ -50,9 +60,49 @@ public class ProductDetailsFragment extends BaseFragment implements CustomClickL
     /**
      * view bindings.
      */
-    private void initViews(){
+    private void initViews(Product product) {
 
-        //mBinding.spCategories.seton
+        GlideHelper.loadImageWithGlide(requireActivity().getApplicationContext(),
+                product.getImage(),
+                product.getId().toString(),
+                mBinding.ivImage);
+
+        mBinding.tvSubtract.setOnClickListener(v -> {
+            Log.i(TAG, "quantity to sub: " + mQuantity);
+            if (mQuantity > 1) {
+                mQuantity--;
+                mBinding.setQuantity(mQuantity);
+            }
+
+        });
+
+        mBinding.tvAdd.setOnClickListener(v -> {
+            Log.i(TAG, "quantity to add: " + mQuantity);
+            if (mQuantity < 10) {
+                mQuantity++;
+                mBinding.setQuantity(mQuantity);
+            }
+        });
+
+        mBinding.btnAddToCart.setOnClickListener(v -> {
+
+            //prepare data for the API add to cart.
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("userId", 1);
+            map.put("date", getCurrentDate());
+            ArrayList<CartItem> list = new ArrayList<>();
+            CartItem item = new CartItem();
+            item.setProductId(String.valueOf(mQuantity));
+            item.setProductId(String.valueOf(product.getId()));
+            map.put("products", list);
+
+            try {
+                ((BaseActivity) getActivity()).showProgress(getContext());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            mViewModel.addProductToCard(map);
+        });
 
     }
 
@@ -61,17 +111,27 @@ public class ProductDetailsFragment extends BaseFragment implements CustomClickL
      */
     private void observeViewModel() {
 
-        mViewModel.getProductsList().observe(getViewLifecycleOwner(), products -> {
+        mViewModel.getAddToCartResult().observe(getViewLifecycleOwner(), products -> {
 
             try {
                 ((BaseActivity) getActivity()).hideProgress();
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
+
+            //Go back to products.
+            Navigation.findNavController(getView()).popBackStack();
 
 
         });
 
+    }
+
+    public static String getCurrentDate() {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = simpleDateFormat.format(c);
+        return formattedDate;
     }
 
     @Override

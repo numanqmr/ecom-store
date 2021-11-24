@@ -1,6 +1,7 @@
 package com.numan.fakestoreapp.network;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.numan.fakestoreapp.common.responseDtos.LoginResponse;
 import com.numan.fakestoreapp.common.responseDtos.RegisterResponse;
 
@@ -31,6 +32,10 @@ interface RetrofitApi {
 
     @GET("products/category/{categoryName}")
     Call<JsonArray> getProductsInCategory(@Path("categoryName") String catName);
+
+    @POST("carts")
+    @FormUrlEncoded
+    Call<JsonObject> addProductToCart(@FieldMap HashMap<String, Object> cartItems);
 //
 //    @GET("carts/user/{userId}")
 //    Call<JsonArray> getUserCart(@Path("userId") String userId);

@@ -3,6 +3,7 @@ package com.numan.fakestoreapp.network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.numan.fakestoreapp.common.Constants;
 import com.numan.fakestoreapp.common.responseDtos.LoginResponse;
 import com.numan.fakestoreapp.common.responseDtos.RegisterResponse;
@@ -74,6 +75,10 @@ public class RetrofitService {
 
     public void getProductsInCategory(String catName, Callback<JsonArray> callback) {
         retrofitApi.getProductsInCategory(catName).enqueue(callback);
+    }
+
+    public void addProductToCard(HashMap map, Callback<JsonObject> callback) {
+        retrofitApi.addProductToCart(map).enqueue(callback);
     }
 
 }

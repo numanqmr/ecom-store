@@ -22,10 +22,6 @@ public class InputValidator {
             "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$"
     );
 
-    private static final Pattern CODE_PATTERN = Pattern.compile(
-            "(?<!\\d)\\d{6}(?!\\d)"
-    );
-
     /**
      * Email Validation Function to validate user email during sigmup.
      *
@@ -54,16 +50,6 @@ public class InputValidator {
      */
     public static boolean isValidFullName(String fname) {
         return fname != null && NAME_PATTERN.matcher(fname).matches();
-    }
-
-    /**
-     * checks if code is valid or not using pattern which only accepts 6 digits.
-     *
-     * @param code 6 digit code from user Email.
-     * @return boolean after validation
-     */
-    public static boolean isValidCode(String code) {
-        return code != null && CODE_PATTERN.matcher(code).matches();
     }
 
 }
