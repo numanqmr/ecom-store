@@ -50,8 +50,6 @@ public class HomeFragment extends BaseFragment implements CustomClickListener {
         mCategoriesList = new ArrayList<>();
         //fetch categories from API
         mViewModel.getAllCategories();
-        //fetch all products from API
-        mViewModel.getAllProducts();
 
         initViews();
         observeViewModel();
@@ -73,7 +71,8 @@ public class HomeFragment extends BaseFragment implements CustomClickListener {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
+
                 if (position == 0) {
                     //fetch all products from API
                     mViewModel.getAllProducts();
@@ -141,7 +140,6 @@ public class HomeFragment extends BaseFragment implements CustomClickListener {
 
         Navigation.findNavController(getView())
                 .navigate(R.id.navigation_details);
-        //TODO: open product details fragment here.
 
     }
 }

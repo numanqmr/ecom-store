@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.numan.fakestoreapp.views.fragments.categories.DashboardFragment"
+        android:name="com.numan.fakestoreapp.views.fragments.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.numan.fakestoreapp.views.fragments.cart.CartFragment"
+        android:name="com.numan.fakestoreapp.views.fragments.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_details"
-        android:name="com.numan.fakestoreapp.views.fragments.cart.CartFragment"
+        android:name="com.numan.fakestoreapp.views.fragments.productDetails.ProductDetailsFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
