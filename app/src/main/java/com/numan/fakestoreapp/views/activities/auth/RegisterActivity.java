@@ -1,50 +1,36 @@
-package com.numan.fakestoreapp.views.activities;
+package com.numan.fakestoreapp.views.activities.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
+
+import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.numan.fakestoreapp.R;
 import com.numan.fakestoreapp.common.CloseSoftKeyBoardOnTouchOutside;
 import com.numan.fakestoreapp.common.ConnectionManager;
-import com.numan.fakestoreapp.common.InputValidator;
-import com.numan.fakestoreapp.common.MySharedPreference;
-import com.numan.fakestoreapp.common.dtos.Login;
-import com.numan.fakestoreapp.databinding.ActivityLoginBinding;
-import com.numan.fakestoreapp.viewModels.LoginViewModel;
+import com.numan.fakestoreapp.common.dtos.Register;
+import com.numan.fakestoreapp.databinding.ActivityRegisterBinding;
+import com.numan.fakestoreapp.views.activities.BaseActivity;
+import com.numan.fakestoreapp.views.activities.home.MainActivity;
 
-import org.json.JSONException;
+public class RegisterActivity extends BaseActivity {
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
-
-public class LoginActivity extends BaseActivity {
-
-    private LoginViewModel mViewModel;
+    private RegisterViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mViewModel = new RegisterViewModel();
 
-        mViewModel = new LoginViewModel();
-
-        ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        ActivityRegisterBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
         binding.setViewModel(mViewModel);
         binding.executePendingBindings();
 
         /*To hide keyboard upon touch*/
         CloseSoftKeyBoardOnTouchOutside close = new CloseSoftKeyBoardOnTouchOutside();
-        close.setupUI(binding.rlContainer, LoginActivity.this);
+        close.setupUI(binding.rlContainer, RegisterActivity.this);
 
         //inflate views.
         initViews(binding);
@@ -52,18 +38,21 @@ public class LoginActivity extends BaseActivity {
         observeViewModel(binding);
     }
 
-    private void initViews(ActivityLoginBinding binding) {
+    private void initViews(ActivityRegisterBinding binding) {
 
-        binding.btnLogin.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
+        binding.btnRegister.setOnClickListener(v -> {
+
             //TODO: use input validators
-            if (!TextUtils.isEmpty(binding.etEmail.getText()) && !TextUtils.isEmpty(binding.etPassword.getText())) {
+            if (!TextUtils.isEmpty(binding.etEmail.getText())
+                    && !TextUtils.isEmpty(binding.etPassword.getText())
+                    && !TextUtils.isEmpty(binding.etFullName.getText())
+                    && !TextUtils.isEmpty(binding.etNumber.getText())
+            ) {
 
                 if (ConnectionManager.isOnline(getApplicationContext())) {
                     showProgress(this);
-                    Login login = new Login();
-                    mViewModel.loginUser(login);
+                    Register register = new Register();
+                    mViewModel.registerUser(register);
                 } else {
                     try {
                         Snackbar.make(findViewById(android.R.id.content), "You're offline. Please connect to an internet connection.", Snackbar.LENGTH_INDEFINITE)
@@ -87,16 +76,16 @@ public class LoginActivity extends BaseActivity {
     /**
      * Observe view model LiveData mutable variables.
      */
-    private void observeViewModel(ActivityLoginBinding binding) {
+    private void observeViewModel(ActivityRegisterBinding binding) {
 
-        mViewModel.getLoginResponse().observe(this, loginResponse -> {
+        mViewModel.getRegisterResponse().observe(this, loginResponse -> {
 
             hideProgress();
 
             if (loginResponse != null) {
 
                 //MySharedPreference.setUser(getApplicationContext(), loginResponse);
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 finish();
 
             } else {

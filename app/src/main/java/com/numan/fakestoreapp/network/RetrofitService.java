@@ -2,6 +2,7 @@ package com.numan.fakestoreapp.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.numan.fakestoreapp.common.Constants;
 import com.numan.fakestoreapp.common.dtos.Login;
 import com.numan.fakestoreapp.common.dtos.Register;
@@ -16,16 +17,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public final class RetrofitService {
+public class RetrofitService {
 
     private static RetrofitService sRetrofitService;
-    private RetrofitApi retrofitApi;
+    public RetrofitApi retrofitApi;
 
     /**
      * Constructor with retrofit builder configurations and
      * okHttp client setup.
      */
-    private RetrofitService() {
+    public RetrofitService() {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(20, TimeUnit.SECONDS)
@@ -64,5 +65,16 @@ public final class RetrofitService {
         retrofitApi.registerUser(signup).enqueue(callback);
     }
 
+    public void getAllCategories(Callback<JsonArray> callback) {
+        retrofitApi.getCategories().enqueue(callback);
+    }
+
+    public void getAllProducts(Callback<JsonArray> callback) {
+        retrofitApi.getProducts().enqueue(callback);
+    }
+
+    public void getProductsInCategory(String catName, Callback<JsonArray> callback) {
+        retrofitApi.getProductsInCategory(catName).enqueue(callback);
+    }
 
 }

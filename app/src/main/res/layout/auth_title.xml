@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".views.activities.SplashActivity">
+    tools:context=".views.activities.splash.SplashActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,6 +14,8 @@
         android:layout_marginBottom="@dimen/_70sdp"
         android:textSize="@dimen/_18ssp"
         android:textColor="@color/teal_700"
+        android:padding="@dimen/_10sdp"
+        android:background="@drawable/rectangle_outlined"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

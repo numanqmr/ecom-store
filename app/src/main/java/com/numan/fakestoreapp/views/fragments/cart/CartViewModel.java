@@ -1,14 +1,15 @@
-package com.numan.fakestoreapp.views.activities.ui.notifications;
+package com.numan.fakestoreapp.views.fragments.cart;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+import com.numan.fakestoreapp.viewModels.BaseViewModel;
+
+public class CartViewModel extends BaseViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public CartViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }

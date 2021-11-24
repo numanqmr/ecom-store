@@ -1,4 +1,4 @@
-package com.numan.fakestoreapp.views.activities;
+package com.numan.fakestoreapp.views.activities.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.numan.fakestoreapp.R;
-import com.numan.fakestoreapp.common.dtos.Login;
+import com.numan.fakestoreapp.views.activities.auth.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

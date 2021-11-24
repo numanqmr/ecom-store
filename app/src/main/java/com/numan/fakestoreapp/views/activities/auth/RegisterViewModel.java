@@ -1,4 +1,4 @@
-package com.numan.fakestoreapp.viewModels;
+package com.numan.fakestoreapp.views.activities.auth;
 
 import android.util.Log;
 
@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.numan.fakestoreapp.common.dtos.Register;
 import com.numan.fakestoreapp.common.responseDtos.RegisterResponse;
 import com.numan.fakestoreapp.network.RetrofitService;
+import com.numan.fakestoreapp.viewModels.BaseViewModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +21,7 @@ public class RegisterViewModel extends BaseViewModel {
     private MutableLiveData<RegisterResponse> mRegisterResponse = new MutableLiveData<>();
 
     /**
-     * login api
+     * register api
      */
     public void registerUser(Register register) {
 

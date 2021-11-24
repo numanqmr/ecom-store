@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.numan.fakestoreapp.viewModels.LoginViewModel" />
+            type="com.numan.fakestoreapp.views.activities.auth.LoginViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".views.activities.LoginActivity">
+        tools:context=".views.activities.auth.LoginActivity">
 
         <include
             android:id="@+id/header"
@@ -43,7 +43,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_password"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_below="@+id/til_email"
             android:layout_marginTop="@dimen/_10sdp"

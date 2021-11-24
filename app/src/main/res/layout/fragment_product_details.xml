@@ -6,9 +6,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.numan.fakestoreapp.views.fragments.home.HomeViewModel" />
+            type="com.numan.fakestoreapp.views.fragments.productDetails.ProductDetailsViewModel" />
+
+        <variable
+            name="isListEmpty"
+            type="java.lang.Boolean" />
 
     </data>
 
@@ -16,8 +22,8 @@
         android:id="@+id/rl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_45sdp"
         android:background="@color/white">
-
 
 
     </RelativeLayout>

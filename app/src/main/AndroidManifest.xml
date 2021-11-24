@@ -4,6 +4,7 @@
     package="com.numan.fakestoreapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,16 +16,18 @@
         android:theme="@style/Theme.FakeStoreApp"
         tools:targetApi="n">
         <activity
-            android:name=".views.activities.MainActivity"
-            android:label="@string/title_activity_main"></activity>
-        <activity
-            android:name=".views.activities.LoginActivity"
+            android:name=".views.activities.home.MainActivity"
+            android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".views.activities.RegisterActivity"
+            android:name=".views.activities.auth.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.auth.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".views.activities.BaseActivity" />
-        <activity android:name=".views.activities.SplashActivity">
+        <activity android:name=".views.activities.splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

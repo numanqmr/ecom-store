@@ -1,38 +1,37 @@
-package com.numan.fakestoreapp.views.activities;
+package com.numan.fakestoreapp.views.activities.auth;
+
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import androidx.databinding.DataBindingUtil;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.numan.fakestoreapp.R;
 import com.numan.fakestoreapp.common.CloseSoftKeyBoardOnTouchOutside;
 import com.numan.fakestoreapp.common.ConnectionManager;
-import com.numan.fakestoreapp.common.InputValidator;
-import com.numan.fakestoreapp.common.dtos.Register;
-import com.numan.fakestoreapp.databinding.ActivityRegisterBinding;
-import com.numan.fakestoreapp.viewModels.RegisterViewModel;
+import com.numan.fakestoreapp.common.dtos.Login;
+import com.numan.fakestoreapp.databinding.ActivityLoginBinding;
+import com.numan.fakestoreapp.views.activities.BaseActivity;
+import com.numan.fakestoreapp.views.activities.home.MainActivity;
 
-import java.util.Objects;
+public class LoginActivity extends BaseActivity {
 
-public class RegisterActivity extends BaseActivity {
-
-    private RegisterViewModel mViewModel;
+    private LoginViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new RegisterViewModel();
 
-        ActivityRegisterBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        mViewModel = new LoginViewModel();
+
+        ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setViewModel(mViewModel);
         binding.executePendingBindings();
 
         /*To hide keyboard upon touch*/
         CloseSoftKeyBoardOnTouchOutside close = new CloseSoftKeyBoardOnTouchOutside();
-        close.setupUI(binding.rlContainer, RegisterActivity.this);
+        close.setupUI(binding.rlContainer, LoginActivity.this);
 
         //inflate views.
         initViews(binding);
@@ -40,21 +39,18 @@ public class RegisterActivity extends BaseActivity {
         observeViewModel(binding);
     }
 
-    private void initViews(ActivityRegisterBinding binding) {
+    private void initViews(ActivityLoginBinding binding) {
 
-        binding.btnRegister.setOnClickListener(v -> {
-
+        binding.btnLogin.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
             //TODO: use input validators
-            if (!TextUtils.isEmpty(binding.etEmail.getText())
-                    && !TextUtils.isEmpty(binding.etPassword.getText())
-                    && !TextUtils.isEmpty(binding.etFullName.getText())
-                    && !TextUtils.isEmpty(binding.etNumber.getText())
-            ) {
+            if (!TextUtils.isEmpty(binding.etEmail.getText()) && !TextUtils.isEmpty(binding.etPassword.getText())) {
 
                 if (ConnectionManager.isOnline(getApplicationContext())) {
                     showProgress(this);
-                    Register register = new Register();
-                    mViewModel.registerUser(register);
+                    Login login = new Login();
+                    mViewModel.loginUser(login);
                 } else {
                     try {
                         Snackbar.make(findViewById(android.R.id.content), "You're offline. Please connect to an internet connection.", Snackbar.LENGTH_INDEFINITE)
@@ -78,16 +74,16 @@ public class RegisterActivity extends BaseActivity {
     /**
      * Observe view model LiveData mutable variables.
      */
-    private void observeViewModel(ActivityRegisterBinding binding) {
+    private void observeViewModel(ActivityLoginBinding binding) {
 
-        mViewModel.getRegisterResponse().observe(this, loginResponse -> {
+        mViewModel.getLoginResponse().observe(this, loginResponse -> {
 
             hideProgress();
 
             if (loginResponse != null) {
 
                 //MySharedPreference.setUser(getApplicationContext(), loginResponse);
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
 
             } else {
