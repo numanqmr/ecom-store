@@ -52,7 +52,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:hint="@string/et_hint_password"
                 android:inputType="textPassword"
