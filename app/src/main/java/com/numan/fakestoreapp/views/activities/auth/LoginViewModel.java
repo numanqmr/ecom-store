@@ -6,10 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.numan.fakestoreapp.common.dtos.Login;
 import com.numan.fakestoreapp.common.responseDtos.LoginResponse;
 import com.numan.fakestoreapp.network.RetrofitService;
 import com.numan.fakestoreapp.viewModels.BaseViewModel;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,11 +24,13 @@ public class LoginViewModel extends BaseViewModel {
     /**
      * login api
      */
-    public void loginUser(Login login) {
+    public void loginUser(String email, String password) {
 
-        mLoginResponse.setValue(new LoginResponse());//TODO: remove hack
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", email);
+        map.put("password", password);
 
-        RetrofitService.getInstance().loginUser(login, new Callback<LoginResponse>() {
+        RetrofitService.getInstance().loginUser(map, new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 Log.d(TAG, "Response Code= " + response.code());
@@ -35,19 +38,16 @@ public class LoginViewModel extends BaseViewModel {
                 if (response.code() == 200) {
                     if (response.body() != null) {
 
-                        if (!response.body().equals("Fail")) {
-                            Log.e(TAG, "error Login ->  " + response.body().toString());
-                            //TODO: send error here
-
-                        } else {
+                            Log.i(TAG, "Login ->  " + response.body().toString());
                             mLoginResponse.setValue(response.body());
-                            //Save response to shared preferences.
-                            //MySharedPreference.setLoginResponse(getApplication().getApplicationContext(), response.body());
-                        }
+
+                    } else {
+                        mLoginResponse.setValue(null);
+
                     }
 
                 } else {
-                    //TODO: send error here
+                    mLoginResponse.setValue(null);
                 }
 
             }

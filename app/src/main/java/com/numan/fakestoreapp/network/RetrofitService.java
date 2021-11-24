@@ -4,11 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.numan.fakestoreapp.common.Constants;
-import com.numan.fakestoreapp.common.dtos.Login;
-import com.numan.fakestoreapp.common.dtos.Register;
 import com.numan.fakestoreapp.common.responseDtos.LoginResponse;
 import com.numan.fakestoreapp.common.responseDtos.RegisterResponse;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -57,12 +56,12 @@ public class RetrofitService {
         return sRetrofitService;
     }
 
-    public void loginUser(Login login, Callback<LoginResponse> callback) {
-        retrofitApi.loginUser(login).enqueue(callback);
+    public void loginUser(HashMap map, Callback<LoginResponse> callback) {
+        retrofitApi.loginUser(map).enqueue(callback);
     }
 
-    public void registerUser(Register signup, Callback<RegisterResponse> callback) {
-        retrofitApi.registerUser(signup).enqueue(callback);
+    public void registerUser(HashMap map, Callback<RegisterResponse> callback) {
+        retrofitApi.registerUser(map).enqueue(callback);
     }
 
     public void getAllCategories(Callback<JsonArray> callback) {

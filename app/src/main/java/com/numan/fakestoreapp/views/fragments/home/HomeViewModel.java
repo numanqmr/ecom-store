@@ -9,9 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.numan.fakestoreapp.common.MySharedPreference;
-import com.numan.fakestoreapp.common.dtos.Login;
 import com.numan.fakestoreapp.common.dtos.Product;
-import com.numan.fakestoreapp.common.responseDtos.LoginResponse;
 import com.numan.fakestoreapp.network.RetrofitService;
 import com.numan.fakestoreapp.viewModels.BaseViewModel;
 

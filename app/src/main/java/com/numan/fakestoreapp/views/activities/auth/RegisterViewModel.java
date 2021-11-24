@@ -6,10 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.numan.fakestoreapp.common.dtos.Register;
 import com.numan.fakestoreapp.common.responseDtos.RegisterResponse;
 import com.numan.fakestoreapp.network.RetrofitService;
 import com.numan.fakestoreapp.viewModels.BaseViewModel;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,37 +24,30 @@ public class RegisterViewModel extends BaseViewModel {
     /**
      * register api
      */
-    public void registerUser(Register register) {
+    public void registerUser(HashMap map) {
 
-        RetrofitService.getInstance().registerUser(register, new Callback<RegisterResponse>() {
+        RetrofitService.getInstance().registerUser(map, new Callback<RegisterResponse>() {
             @Override
             public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
                 Log.d(TAG, "Response Code= " + response.code());
 
                 if (response.code() == 200) {
                     if (response.body() != null) {
-
-                        if (!response.body().equals("Fail")) {
-                            Log.e(TAG, "error register ->  " + response.body().toString());
-                            //TODO: send error here
-
-                        } else {
-                            mRegisterResponse.setValue(response.body());
-                            //Save response to shared preferences.
-                            //MySharedPreference.setLoginResponse(getApplication().getApplicationContext(), response.body());
-                        }
+                        mRegisterResponse.setValue(new RegisterResponse());
+                    } else {
+                        mRegisterResponse.setValue(null);
                     }
 
                 } else {
-                    //TODO: send error here
+                    mRegisterResponse.setValue(null);
                 }
 
             }
 
             @Override
             public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
-                Log.d(TAG, "reegister error= " + t.getLocalizedMessage());
-                //TODO: send error here
+                Log.d(TAG, "register error= " + t.getLocalizedMessage());
+                mRegisterResponse.setValue(null);
             }
         });
     }

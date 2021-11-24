@@ -1,24 +1,27 @@
 package com.numan.fakestoreapp.network;
 
 import com.google.gson.JsonArray;
-import com.numan.fakestoreapp.common.dtos.Login;
-import com.numan.fakestoreapp.common.dtos.Register;
 import com.numan.fakestoreapp.common.responseDtos.LoginResponse;
 import com.numan.fakestoreapp.common.responseDtos.RegisterResponse;
 
+import java.util.HashMap;
+
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 interface RetrofitApi {
 
-    @POST("auth/register")
-    Call<RegisterResponse> registerUser(@Body Register object);
+    @POST("users")
+    @FormUrlEncoded
+    Call<RegisterResponse> registerUser(@FieldMap HashMap<String, Object> loginMap);
 
     @POST("auth/login")
-    Call<LoginResponse> loginUser(@Body Login object);
+    @FormUrlEncoded
+    Call<LoginResponse> loginUser(@FieldMap HashMap<String, Object> loginMap);
 
     @GET("products/categories")
     Call<JsonArray> getCategories();

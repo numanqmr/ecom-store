@@ -1,10 +1,9 @@
 package com.numan.fakestoreapp.views.activities.auth;
 
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+
+import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.numan.fakestoreapp.R;
@@ -12,7 +11,6 @@ import com.numan.fakestoreapp.common.CloseSoftKeyBoardOnTouchOutside;
 import com.numan.fakestoreapp.common.ConnectionManager;
 import com.numan.fakestoreapp.common.InputValidator;
 import com.numan.fakestoreapp.common.MySharedPreference;
-import com.numan.fakestoreapp.common.dtos.Login;
 import com.numan.fakestoreapp.databinding.ActivityLoginBinding;
 import com.numan.fakestoreapp.views.activities.BaseActivity;
 import com.numan.fakestoreapp.views.activities.home.MainActivity;
@@ -44,8 +42,7 @@ public class LoginActivity extends BaseActivity {
     private void initViews(ActivityLoginBinding binding) {
 
         binding.btnLogin.setOnClickListener(v -> {
-//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//            finish();
+
             if (!InputValidator.isValidEmail(binding.etEmail.getText().toString())) {
                 showToast("Please enter a valid Email!");
             }else if(!InputValidator.isValidPassword(binding.etPassword.getText().toString())) {
@@ -53,10 +50,7 @@ public class LoginActivity extends BaseActivity {
             } else {
             if (ConnectionManager.isOnline(getApplicationContext())) {
                 showProgress(this);
-                Login login = new Login();
-                login.setEmail(binding.etEmail.getText().toString());
-                login.setPassword(binding.etPassword.getText().toString());
-                mViewModel.loginUser(login);
+                mViewModel.loginUser(binding.etEmail.getText().toString(), binding.etPassword.getText().toString());
             } else {
                 try {
                     Snackbar.make(findViewById(android.R.id.content), "You're offline. Please connect to an internet connection.", Snackbar.LENGTH_INDEFINITE)
@@ -70,6 +64,10 @@ public class LoginActivity extends BaseActivity {
                 }
             }
             }
+        });
+
+        binding.tvRegister.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
     }
@@ -86,7 +84,9 @@ public class LoginActivity extends BaseActivity {
             if (loginResponse != null) {
 
                 MySharedPreference.setUser(getApplicationContext(), loginResponse);
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
                 finish();
 
             } else {
