@@ -27,6 +27,11 @@ Simple build and Run, no fancy envs or keys required.
 
 * if you face any trouble running the project, feel free top reach out, create an issue if need be.
 
+
+## NOTE:
+
+* It might not work currently on the dark mode themes as no support or any sort of adjustments were made.
+
 ## Authors
 
 [@Numanqmr](https://github.com/numanqmr)
