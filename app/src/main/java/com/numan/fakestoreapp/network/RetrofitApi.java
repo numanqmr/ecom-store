@@ -46,5 +46,8 @@ interface RetrofitApi {
     @GET("carts/{userId}")
     Call<JsonObject> getUserCart(@Path("userId") String userId);
 
+    @GET("users/{userId}")
+    Call<JsonObject> getUserData(@Path("userId") String userId);
+
 
 }

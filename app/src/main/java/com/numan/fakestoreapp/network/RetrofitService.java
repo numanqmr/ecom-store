@@ -89,4 +89,8 @@ public class RetrofitService {
         retrofitApi.getUserCart(userId).enqueue(callback);
     }
 
+    public void getUserData(String userId, Callback<JsonObject> callback) {
+        retrofitApi.getUserData(userId).enqueue(callback);
+    }
+
 }

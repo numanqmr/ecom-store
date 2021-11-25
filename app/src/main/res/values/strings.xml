@@ -1,22 +1,31 @@
 <resources>
+
     <string name="app_name">E-com Store</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    EditText hints-->
     <string name="et_hint_email">Email Address</string>
     <string name="et_hint_password">Password</string>
     <string name="et_hint_username">Username</string>
-    <string name="btn_login"> Login </string>
-    <string name="btn_register"> Register </string>
     <string name="et_hint_full_name">Full Name</string>
     <string name="et_hint_number">Phone Number</string>
-    <string name="tv_register_account">Don\'t have an account? <u>Register!</u></string>
+
+    <!--    Button titles-->
+    <string name="btn_login"> Login </string>
+    <string name="btn_register"> Register </string>
+    <string name="btn_add_to_cart">  Add to cart  </string>
+    <string name="btn_update_cart">Update Cart</string>
+
+    <!--    Title texts-->
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
+
+    <!--    TextViews texts-->
     <string name="tv_no_products_available">No product(s) available.</string>
-    <string name="btn_add_to_cart">  Add to cart  </string>
+    <string name="tv_register_account">Don\'t have an account? <u>Register!</u></string>
     <string name="tv_categories">Categories</string>
-    <string name="btn_update_cart">Update Cart</string>
+
 </resources>
