@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.numan.fakestoreapp.R;
@@ -25,18 +26,15 @@ public class SplashActivity extends BaseActivity {
         CircularProgressIndicator indicator =  findViewById(R.id.progress_circular);
         indicator.setIndeterminate(true);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                LoginResponse response = MySharedPreference.getUser(getApplicationContext());
-                if(response!=null){
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                }else {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                }
-                finish();
-
+        new Handler(Looper.myLooper()).postDelayed(() -> {
+            LoginResponse response = MySharedPreference.getUser(getApplicationContext());
+            if(response!=null){
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            }else {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             }
+            finish();
+
         },1500);
 
     }
