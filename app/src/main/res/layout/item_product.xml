@@ -35,7 +35,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -46,16 +46,6 @@
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/_11ssp"
                 android:text="@{product.title}"/>
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_product_desc"-->
-<!--                android:layout_toEndOf="@+id/iv_product_image"-->
-<!--                android:layout_below="@+id/tv_product_title"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/text_hint_black"-->
-<!--                android:textSize="@dimen/_11ssp"-->
-<!--                android:text="@{product.description}"/>-->
 
             <TextView
                 android:id="@+id/tv_product_price"

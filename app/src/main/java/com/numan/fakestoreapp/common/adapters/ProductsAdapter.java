@@ -53,9 +53,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Generi
                 product.getId().toString(),
                 holder.itemCard.ivProductImage);
 
-        holder.itemCard.rlContainer.setOnClickListener(view -> {
-            mListener.onProductClick(product, 1);
-        });
+        holder.itemCard.rlContainer.setOnClickListener(view -> mListener.onProductClick(product, 1));
 
     }
 

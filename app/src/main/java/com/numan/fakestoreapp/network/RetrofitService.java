@@ -77,8 +77,16 @@ public class RetrofitService {
         retrofitApi.getProductsInCategory(catName).enqueue(callback);
     }
 
-    public void addProductToCard(HashMap map, Callback<JsonObject> callback) {
+    public void addProductToCart(HashMap map, Callback<JsonObject> callback) {
         retrofitApi.addProductToCart(map).enqueue(callback);
+    }
+
+    public void updateCart(HashMap map, String cartId, Callback<JsonObject> callback) {
+        retrofitApi.updateCart(map, cartId).enqueue(callback);
+    }
+
+    public void getUserCart(String userId, Callback<JsonObject> callback) {
+        retrofitApi.getUserCart(userId).enqueue(callback);
     }
 
 }

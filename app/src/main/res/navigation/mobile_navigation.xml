@@ -21,11 +21,11 @@
         android:id="@+id/navigation_notifications"
         android:name="com.numan.fakestoreapp.views.fragments.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/navigation_details"
         android:name="com.numan.fakestoreapp.views.fragments.productDetails.ProductDetailsFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_cart" />
 </navigation>

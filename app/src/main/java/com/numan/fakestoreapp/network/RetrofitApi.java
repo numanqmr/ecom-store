@@ -12,6 +12,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 interface RetrofitApi {
@@ -36,9 +37,14 @@ interface RetrofitApi {
     @POST("carts")
     @FormUrlEncoded
     Call<JsonObject> addProductToCart(@FieldMap HashMap<String, Object> cartItems);
-//
-//    @GET("carts/user/{userId}")
-//    Call<JsonArray> getUserCart(@Path("userId") String userId);
+
+    @PUT("carts/{cartId}")
+    @FormUrlEncoded
+    Call<JsonObject> updateCart(@FieldMap HashMap<String, Object> cartItems,
+                                @Path("cartId") String cartId);
+
+    @GET("carts/{userId}")
+    Call<JsonObject> getUserCart(@Path("userId") String userId);
 
 
 }

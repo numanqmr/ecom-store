@@ -31,7 +31,7 @@ public class ProductDetailsViewModel extends BaseViewModel {
      */
     public void addProductToCard(HashMap<String, Object> map) {
 
-        RetrofitService.getInstance().addProductToCard(map , new Callback<JsonObject>() {
+        RetrofitService.getInstance().addProductToCart(map , new Callback<JsonObject>() {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 Log.d(TAG, "Response Code= " + response.code());

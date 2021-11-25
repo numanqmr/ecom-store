@@ -8,7 +8,12 @@
 
         <variable
             name="viewModel"
-            type="com.numan.fakestoreapp.views.fragments.home.HomeViewModel" />
+            type="com.numan.fakestoreapp.views.fragments.cart.CartViewModel" />
+
+        <variable
+            name="totalAmount"
+            type="double" />
+
 
     </data>
 
@@ -16,7 +21,44 @@
         android:id="@+id/rl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/_60sdp"
         android:background="@color/white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_update_cart"
+            android:layout_margin="@dimen/_15sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_cart" />
+
+        <TextView
+            android:id="@+id/tv_product_total"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_cart"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/_12ssp"
+            android:text="@{`Sub Total: `+ totalAmount, default=10}"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_update_cart"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_update_cart"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_rectangle_curved"
+            />
 
 
 

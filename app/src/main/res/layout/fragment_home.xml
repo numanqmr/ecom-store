@@ -25,12 +25,24 @@
         android:layout_marginBottom="@dimen/_45sdp"
         android:background="@color/white">
 
+        <TextView
+            android:id="@+id/tv_cat_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_categories"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/_14ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            />
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@+id/tv_cat_title"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:background="@drawable/rectangle_outlined"
             app:cardBackgroundColor="@color/white"

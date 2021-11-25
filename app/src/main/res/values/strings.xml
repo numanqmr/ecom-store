@@ -17,4 +17,6 @@
     <string name="title_profile">Profile</string>
     <string name="tv_no_products_available">No product(s) available.</string>
     <string name="btn_add_to_cart">  Add to cart  </string>
+    <string name="tv_categories">Categories</string>
+    <string name="btn_update_cart">Update Cart</string>
 </resources>

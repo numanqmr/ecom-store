@@ -15,6 +15,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        //need to hide it cause removing it from noActionBar theme messes up the nav graph.
     }
 
     /**

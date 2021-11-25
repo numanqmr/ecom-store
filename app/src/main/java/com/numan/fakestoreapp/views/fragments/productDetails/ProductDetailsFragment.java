@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 
 import com.numan.fakestoreapp.R;
 import com.numan.fakestoreapp.common.Constants;
+import com.numan.fakestoreapp.common.DateHelper;
 import com.numan.fakestoreapp.common.GlideHelper;
 import com.numan.fakestoreapp.common.dtos.CartItem;
 import com.numan.fakestoreapp.common.dtos.Product;
@@ -28,7 +29,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 
-public class ProductDetailsFragment extends BaseFragment implements CustomClickListener {
+public class ProductDetailsFragment extends BaseFragment {
 
     private static final String TAG = ProductDetailsFragment.class.getSimpleName();
 
@@ -89,7 +90,7 @@ public class ProductDetailsFragment extends BaseFragment implements CustomClickL
             //prepare data for the API add to cart.
             HashMap<String, Object> map = new HashMap<>();
             map.put("userId", 1);
-            map.put("date", getCurrentDate());
+            map.put("date", DateHelper.getCurrentDate());
             ArrayList<CartItem> list = new ArrayList<>();
             CartItem item = new CartItem();
             item.setProductId(String.valueOf(mQuantity));
@@ -127,17 +128,4 @@ public class ProductDetailsFragment extends BaseFragment implements CustomClickL
 
     }
 
-    public static String getCurrentDate() {
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = simpleDateFormat.format(c);
-        return formattedDate;
-    }
-
-    @Override
-    public void onProductClick(Product product, int quantity) {
-
-        //TODO: open product details fragment here.
-
-    }
 }

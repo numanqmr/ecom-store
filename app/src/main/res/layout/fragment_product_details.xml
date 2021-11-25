@@ -38,7 +38,7 @@
             android:layout_height="@dimen/_100sdp"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             tools:ignore="ContentDescription" />
 
         <TextView

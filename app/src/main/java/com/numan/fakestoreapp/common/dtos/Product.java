@@ -5,12 +5,21 @@ import java.io.Serializable;
 public class Product implements Serializable {
 
     private Integer id;
+    private Integer quantity = 1;
     private String title;
     private Double price;
     private String description;
     private String category;
     private String image;
     private Rating rating;
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public Integer getId() {
         return id;
