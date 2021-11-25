@@ -1,5 +1,6 @@
 package com.numan.fakestoreapp.views.fragments.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.numan.fakestoreapp.R;
+import com.numan.fakestoreapp.common.MySharedPreference;
 import com.numan.fakestoreapp.common.dtos.User;
 import com.numan.fakestoreapp.databinding.FragmentProductDetailsBinding;
 import com.numan.fakestoreapp.databinding.FragmentProfileBinding;
 import com.numan.fakestoreapp.views.activities.BaseActivity;
+import com.numan.fakestoreapp.views.activities.auth.LoginActivity;
 import com.numan.fakestoreapp.views.activities.home.MainActivity;
 import com.numan.fakestoreapp.views.fragments.cart.CartViewModel;
 
@@ -53,6 +56,13 @@ public class ProfileFragment extends Fragment {
                 + user.getAddress().getStreet() + ", "
                 + user.getAddress().getCity().toUpperCase();
         mBinding.tvAddress.setText(address);
+
+        mBinding.btnLogout.setOnClickListener( v -> {
+            //clear local storage to logout.
+            MySharedPreference.setUser(getActivity().getApplicationContext(), null);
+            getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+            getActivity().finish();
+        });
     }
 
     /**

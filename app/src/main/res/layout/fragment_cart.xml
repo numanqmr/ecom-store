@@ -60,8 +60,6 @@
             android:background="@drawable/btn_rectangle_curved"
             />
 
-
-
     </RelativeLayout>
 
 </layout>

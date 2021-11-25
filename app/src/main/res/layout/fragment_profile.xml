@@ -73,6 +73,18 @@
             android:textColor="@color/text_black"
             android:textSize="@dimen/_15ssp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_logout"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_log_out"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_rectangle_curved"
+            />
+
     </RelativeLayout>
 
 </layout>
